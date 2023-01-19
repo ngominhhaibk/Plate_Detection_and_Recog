@@ -1,0 +1,36 @@
+def IOU(tl1, br1, tl2, br2): #IoU = Diện tích phần GIAO /Diện tích phần HỢP
+    wh1, wh2 = br1-tl1, br2-tl2
+    assert((wh1 >= 0).all() and (wh2 >= 0).all())
+    
+    intersection_wh = np.maximum(np.minimum(br1, br2) - np.maximum(tl1, tl2), 0)
+    intersection_area = np.prod(intersection_wh)
+    area1, area2 = (np.prod(wh1), np.prod(wh2))
+    union_area = area1 + area2 - intersection_area
+    return intersection_area/union_area
+##########################################################################################################
+def IOU_labels(l1, l2):
+    return IOU(l1.tl(), l1.br(), l2.tl(), l2.br())
+##########################################################################################################
+# def nms(Labels, iou_threshold=0.5):  #Non-max suppression (NMS). 
+#     #Trong trường hợp có nhiều khung giới hạn cho cùng một thực thể, 
+#     #chúng ta có thể loại bỏ các khung thừa với thuật toán Non-max suppression (NMS).
+#     #IoU ≥0.5 được coi là có mức độ tương đồng cao.
+#(ở đây thực ra liên quan đến bài toán phát hiện nhiều biển)( tại do lấy 1 biển thì luôn lấy cái cao nhất rồi, lấy 2 biển mới cần xét cái trùng nhau)
+#     SelectedLabels = []
+#     #reverse=True đảo ngược thứ tự sắp xếp từ lớn đến bé
+#     Labels.sort(key=lambda l: l.prob(), reverse=True)  #trả về 1 list mới được sắp xếp (sắp xếp theo tỉ lệ prob)
+    
+#     for label in Labels:
+#         non_overlap = True
+
+#         for sel_label in SelectedLabels:
+#             if IOU_labels(label, sel_label) > iou_threshold: #????????????????????????????????
+#                 non_overlap = False
+#                 break
+
+#         if non_overlap:
+#             SelectedLabels.append(label)  #nếu true, thêm label vào SelectedLabels
+#     # Lấy ra khung có điểm cao nhất và chuyển từ A sang B.
+#     # Tính IoU của khung đó với tất cả các khung khác, loại bỏ hết các khung có IoU vượt ngưỡng.
+#     # Lặp lại bước 2 và 3 cho đến khi chạy hết A
+#     return SelectedLabels
