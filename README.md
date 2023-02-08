@@ -1,5 +1,6 @@
 # Plate_Detection_and_Recog
 Vehicle license plate recognition system
+![image](https://user-images.githubusercontent.com/111002449/217446018-145484eb-e295-4a44-b0ea-5fe19bfe2b3e.png)
 ![image](https://user-images.githubusercontent.com/111002449/215965437-195b2061-223e-4513-9b49-6225a3ac8628.png)
 ![image](https://user-images.githubusercontent.com/111002449/215965530-099d1ce5-8727-4776-a0bf-c93f807e9176.png)
 ![image](https://user-images.githubusercontent.com/111002449/215965510-dabfeae7-b846-4250-9182-beca8db42edd.png)
